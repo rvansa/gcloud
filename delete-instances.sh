@@ -3,11 +3,13 @@
 LAST_ID=`expr ${1:-$DEFAULT_SLAVES} - 1`
 
 ### Release the instances
-gcloud compute instances delete $INSTANCE_PREFIX-master --quiet --zone $ZONE &
+INSTANCES="$INSTANCE_PREFIX-master"
 for ID in `seq 0 $LAST_ID`; do
-	gcloud compute instances delete $INSTANCE_PREFIX-$ID --quiet --zone $ZONE &
+   INSTANCES="$INSTANCES $INSTANCE_PREFIX-$ID"
 done;
-wait
+
+echo "Releasing instances $INSTANCES"
+gcloud compute instances delete $INSTANCES --quiet --zone $ZONE
 gcloud compute instances list # just checking
 
 ### Remove the addresses & settings from .ssh/config
