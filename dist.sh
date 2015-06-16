@@ -5,8 +5,6 @@
 ###############################################
 . ./include.sh
 
-VERSION=2.0.0-SNAPSHOT
-RADARGUN_HOME=$SHARED_DIR/RadarGun-$VERSION
 BENCHMARK_CONFIG=$1
 SLAVES=${2:-$DEFAULT_SLAVES}
 MASTER=$INSTANCE_PREFIX-master

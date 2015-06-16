@@ -11,21 +11,26 @@ SHARED_DIR=/mnt/shared
 SHARED_DISK_NAME=shared
 SHARED_DISK_DEV=/dev/disk/by-id/google-$SHARED_DISK_NAME
 REMOTE_HOME=$HOME
-LOCAL_CONFIG_DIR=$HOME/workspace/etc
+#LOCAL_CONFIG_DIR=$HOME/workspace/etc
+LOCAL_CONFIG_DIR=$HOME/Development/projects/etc
 REMOTE_CONFIG_DIR=$REMOTE_HOME/etc
 DEFAULT_SLAVES=32
 DEFAULT_RESULTS_DIR=/tmp/results
-BROWSER=firefox
+#BROWSER=firefox
+BROWSER=chrome
 MAX_CONCURRENCY=32
+
+VERSION=2.1.0-SNAPSHOT
+RADARGUN_HOME=$SHARED_DIR/RadarGun-$VERSION
 
 ### Configuration for RadarGun jobs
 JGROUPS_PORT=7800
-JGROUPS_JAR=$SHARED_DIR/RadarGun-2.0.0-SNAPSHOT/plugins/infinispan70/lib/jgroups-3.6.1.Final.jar
+JGROUPS_JAR=$SHARED_DIR/RadarGun-2.1.0-SNAPSHOT/plugins/infinispan70/lib/jgroups-3.6.1.Final.jar
 CLUSTER_NAME=default
 
 ADD_CONFIGS=""
 #ADD_CONFIGS="$ADD_CONFIGS --add-config jdg64:$REMOTE_CONFIG_DIR/ispn-configs/infinispan60/dist-no-tx.xml"
-#ADD_CONFIGS="$ADD_CONFIGS --add-config jdg64:$REMOTE_CONFIG_DIR/jgroups/infinispan70/jgroups-google.xml"
+ADD_CONFIGS="$ADD_CONFIGS --add-config jdg65:$REMOTE_CONFIG_DIR/jgroups/infinispan70/jgroups-google.xml"
 #ADD_CONFIGS="$ADD_CONFIGS --add-config jdg64:$SHARED_DIR/RadarGun-2.0.0-SNAPSHOT/plugins/jdg63/conf/server.xml"
 ADD_CONFIGS="$ADD_CONFIGS --add-config jdg64:$REMOTE_HOME/etc/configs/default/gce.xml"
 
