@@ -8,9 +8,9 @@
 LAST_ID=`expr ${1:-$DEFAULT_SLAVES} - 1`
 
 echo "Unmounting drives..."
-ssh -tt $INSTANCE_PREFIX-master sudo umount $SHARED_DIR &
+ssh -tt $INSTANCE_PREFIX-master sudo umount $SHARED_DISK_DEV &
 for ID in `seq 0 $LAST_ID`; do
-   ssh -tt $INSTANCE_PREFIX-$ID sudo umount $SHARED_DIR &
+   ssh -tt $INSTANCE_PREFIX-$ID sudo umount $SHARED_DISK_DEV &
    if [ `expr \( $ID + 1 \) % $MAX_CONCURRENCY` -eq 0 ]; then
       wait
    fi

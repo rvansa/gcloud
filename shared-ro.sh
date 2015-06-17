@@ -8,7 +8,7 @@
 LAST_ID=`expr ${1:-$DEFAULT_SLAVES} - 1`
 
 echo "Detaching from $INSTANCE_PREFIX-master..."
-ssh -tt $INSTANCE_PREFIX-master 'sudo umount '$SHARED_DIR
+ssh -tt $INSTANCE_PREFIX-master 'sudo umount '$SHARED_DISK_DEV
 gcloud compute instances detach-disk $INSTANCE_PREFIX-master --disk $SHARED_DISK_NAME
 
 echo "Attaching to instances..."
